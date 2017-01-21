@@ -2,6 +2,8 @@
 Photo Frame Plugin for Indigo
 By Bert Martin
 
+https://github.com/bkmar1192/PhotoFrame
+
 This is a simple plugin that randomly grabs a single photo from a directory, and copies 
 it to a directory.  It is designed to be used to create a photo frame as part of a 
 control page.
@@ -13,7 +15,7 @@ run the following from the terminal:
 
 Plugin Configuration:
 ---------------------
-There is no configuration fro the plugin itself.
+There is no configuration for the plugin itself.
 
 
 Device Configuration:
