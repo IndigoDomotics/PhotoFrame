@@ -182,12 +182,16 @@ class Plugin(indigo.PluginBase):
 						device.refreshFromServer()
 						PhotoState = device.states["state"]
 						if PhotoState:
-							PictureData = get_exif(FileFrom)
-							PictureDate = PictureData["DateTime"]
+							try:
+								PictureData = get_exif(FileFrom)
+								PictureDate = PictureData["DateTime"]
+								device.updateStateOnServer("date", value=PictureDate)
+							except:
+								device.updateStateOnServer("date", value="Unknown")
+
 							border_img.save(PathTo,optimize=True,quality=75)
 							#PictureDate = os.path.getmtime(FileFrom)
 							PicturePath, PictureName = os.path.split(FileFrom)
-							device.updateStateOnServer("date", value=PictureDate)
 							device.updateStateOnServer("name", value=PictureName)
 							
 						self.sleep(6)
