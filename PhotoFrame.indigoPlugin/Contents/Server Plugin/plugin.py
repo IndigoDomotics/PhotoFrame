@@ -8,7 +8,6 @@ import indigo
 import os, os.path
 import sys
 import time
-from ghpu import GitHubPluginUpdater
 
 from PIL import Image
 from PIL import ImageFont
@@ -63,7 +62,6 @@ class Plugin(indigo.PluginBase):
 	def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
 		super(Plugin, self).__init__(pluginId, pluginDisplayName, pluginVersion, pluginPrefs)
 		self.debug = False
-		self.updater = GitHubPluginUpdater(self)
 
 	#########################################
 	# Plugin startup and shutdown
@@ -208,22 +206,6 @@ class Plugin(indigo.PluginBase):
 	################################################################################
 	# Plugin menus
 	################################################################################
-	def checkForUpdate(self):
-		ActiveVersion = str(self.pluginVersion)
-		CurrentVersion = str(self.updater.getVersion())
-		if ActiveVersion == CurrentVersion:
-			indigo.server.log("Running the most recent version of Photo Frame")
-		else:
-			indigo.server.log("The current version of Photo Frame is " + str(CurrentVersion) + " and the running version " + str(ActiveVersion) + ".")
-		
-	def updatePlugin(self):
-		ActiveVersion = str(self.pluginVersion)
-		CurrentVersion = str(self.updater.getVersion())
-		if ActiveVersion == CurrentVersion:
-			indigo.server.log("Already running the most recent version of Photo Frame")
-		else:
-			indigo.server.log("The current version of Photo Frame is " + str(CurrentVersion) + " and the running version " + str(ActiveVersion) + ".")
-			self.updater.update()
 	
 	#########################################
 	# Plugin Actions object callbacks
